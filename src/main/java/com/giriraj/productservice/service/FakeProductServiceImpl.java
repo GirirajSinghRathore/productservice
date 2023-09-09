@@ -2,9 +2,11 @@ package com.giriraj.productservice.service;
 
 import com.giriraj.productservice.dtos.FakeStoreProductDto;
 import com.giriraj.productservice.dtos.GenericProductDto;
+import com.giriraj.productservice.exception.ProductNotFoundException;
 import com.giriraj.productservice.model.Category;
 import com.giriraj.productservice.model.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -20,12 +22,15 @@ public class FakeProductServiceImpl implements ProductService{
         this.restTemplateBuilder = restTemplateBuilder;
     }
     @Override
-    public Product getProductById(Long id) {
+    public Product getProductById(Long id) throws ProductNotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
         String PRODUCT_SERVICE_URL = "https://fakestoreapi.com/products/{id}";
         ResponseEntity<FakeStoreProductDto> fakeStoreProductDtoResponseEntity =restTemplate.getForEntity(PRODUCT_SERVICE_URL, FakeStoreProductDto.class, id);
         Product product = new Product();
         FakeStoreProductDto fakeStoreProductDto = fakeStoreProductDtoResponseEntity.getBody();
+        if(fakeStoreProductDto == null){
+            throw new ProductNotFoundException("Product not found with id: "+id+" in FakeStore");
+        }
         product.setId(fakeStoreProductDto.getId());
         product.setTitle(fakeStoreProductDto.getTitle());
         product.setPrice(fakeStoreProductDto.getPrice());

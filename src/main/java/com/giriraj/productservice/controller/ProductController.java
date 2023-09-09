@@ -1,6 +1,8 @@
 package com.giriraj.productservice.controller;
 
+import com.giriraj.productservice.dtos.ExceptionHandlerDto;
 import com.giriraj.productservice.dtos.GenericProductDto;
+import com.giriraj.productservice.exception.ProductNotFoundException;
 import com.giriraj.productservice.model.Product;
 import com.giriraj.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,9 +29,12 @@ public class ProductController {
         return new ResponseEntity<>(genericProductDtoList, HttpStatus.OK);
     }
     @GetMapping("{id}")
-    public ResponseEntity<Product> getProuctById(@PathVariable("id") Long id){
-        return new ResponseEntity<>(productService.getProductById(id), HttpStatus.OK);
+    public ResponseEntity<Product> getProuctById(@PathVariable("id") Long id) throws ProductNotFoundException {
+        Product product = productService.getProductById(id);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
+
+
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteProductbyId(@PathVariable("id") Long id){
         productService.deleteProductById(id);
