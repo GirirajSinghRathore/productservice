@@ -1,4 +1,4 @@
-package com.giriraj.productservice.dtos;
+package com.giriraj.productservice.thirdpartyclient.productservice.fakestore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,14 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class FakeStoreProductDto {
-//    {
-//        id:1,
-//                title:'...',
-//            price:'...',
-//            category:'...',
-//            description:'...',
-//            image:'...'
-//    }
     private Long id;
     private String title;
     private double price;

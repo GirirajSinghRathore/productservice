@@ -7,7 +7,7 @@ import com.giriraj.productservice.model.Product;
 import java.util.List;
 
 public interface ProductService {
-    Product getProductById(Long id) throws ProductNotFoundException;
+    GenericProductDto getProductById(Long id) throws ProductNotFoundException;
     GenericProductDto createProduct(GenericProductDto genericProductDto);
     void updateProduct(GenericProductDto genericProductDto);
     void deleteProductById(Long id);

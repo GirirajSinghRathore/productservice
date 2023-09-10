@@ -29,8 +29,8 @@ public class ProductController {
         return new ResponseEntity<>(genericProductDtoList, HttpStatus.OK);
     }
     @GetMapping("{id}")
-    public ResponseEntity<Product> getProuctById(@PathVariable("id") Long id) throws ProductNotFoundException {
-        Product product = productService.getProductById(id);
+    public ResponseEntity<GenericProductDto> getProuctById(@PathVariable("id") Long id) throws ProductNotFoundException {
+        GenericProductDto product = productService.getProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 

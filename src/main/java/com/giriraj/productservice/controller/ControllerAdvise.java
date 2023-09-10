@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ControllerAdvise {
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ExceptionHandlerDto> productNotFoundHandler(ProductNotFoundException productNotFoundException){
-        ExceptionHandlerDto exceptionHandlerDto = new ExceptionHandlerDto(productNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(exceptionHandlerDto, HttpStatus.NOT_FOUND);
-    }
+//    @ExceptionHandler(ProductNotFoundException.class)
+//    public ResponseEntity<ExceptionHandlerDto> productNotFoundHandler(ProductNotFoundException productNotFoundException){
+//        ExceptionHandlerDto exceptionHandlerDto = new ExceptionHandlerDto(productNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
+//        return new ResponseEntity<>(exceptionHandlerDto, HttpStatus.NOT_FOUND);
+//    }
 }
