@@ -20,6 +20,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -59,6 +60,11 @@
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+
+
+
 
     </dependencies>
 

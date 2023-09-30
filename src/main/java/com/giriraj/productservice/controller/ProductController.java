@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -29,14 +30,14 @@ public class ProductController {
         return new ResponseEntity<>(genericProductDtoList, HttpStatus.OK);
     }
     @GetMapping("{id}")
-    public ResponseEntity<GenericProductDto> getProuctById(@PathVariable("id") Long id) throws ProductNotFoundException {
+    public ResponseEntity<GenericProductDto> getProuctById(@PathVariable("id") UUID id) throws ProductNotFoundException {
         GenericProductDto product = productService.getProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteProductbyId(@PathVariable("id") Long id){
+    public ResponseEntity<String> deleteProductbyId(@PathVariable("id") UUID id){
         productService.deleteProductById(id);
         return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
     }
@@ -46,7 +47,7 @@ public class ProductController {
 
     }
     @PutMapping("{id}")
-    public ResponseEntity<String> updateProduct(@RequestBody GenericProductDto genericProductDto,@PathVariable("id") Long id){
+    public ResponseEntity<String> updateProduct(@RequestBody GenericProductDto genericProductDto,@PathVariable("id") UUID id){
         genericProductDto.setId(id);
         productService.updateProduct(genericProductDto);
         return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
