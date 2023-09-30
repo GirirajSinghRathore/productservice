@@ -9,6 +9,7 @@ import com.giriraj.productservice.thirdpartyclient.productservice.fakestore.Fake
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,16 +31,24 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void updateProduct(GenericProductDto genericProductDto) {
 
+        productRepository.save(genericProductDtoToProduct(genericProductDto));
+
     }
 
     @Override
     public void deleteProductById(UUID id) {
-
+        productRepository.deleteById(id);
     }
 
     @Override
     public List<GenericProductDto> getAllProducts() {
-        return null;
+
+        List<Product> productList = productRepository.findAll();
+        List<GenericProductDto> genericProductDtoList = new ArrayList<>();
+        for(Product product: productList){
+            genericProductDtoList.add(productToGenericProductDto(product));
+        }
+        return genericProductDtoList;
     }
     private GenericProductDto productToGenericProductDto(Product product){
         GenericProductDto genericProductDto = new GenericProductDto();

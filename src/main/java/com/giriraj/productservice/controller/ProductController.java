@@ -5,6 +5,7 @@ import com.giriraj.productservice.dtos.GenericProductDto;
 import com.giriraj.productservice.exception.ProductNotFoundException;
 import com.giriraj.productservice.model.Product;
 import com.giriraj.productservice.service.ProductService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class ProductController {
     public ProductController(@Qualifier("productService") ProductService productService){
         this.productService = productService;
     }
+//    @ApiOperation(value = "Get all products")
     @GetMapping
     public ResponseEntity<List<GenericProductDto>> getAllProducts(){
         List<GenericProductDto> genericProductDtoList =
